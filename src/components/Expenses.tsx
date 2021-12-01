@@ -1,5 +1,6 @@
 import './Expenses.css';
 
+import Card from './Card';
 import ExpenseItem from './ExpenseItem';
 
 interface IExpense {
@@ -13,7 +14,7 @@ interface IExpense {
 
 export default function Expenses({ expenses }: IExpense): JSX.Element {
   return (
-    <div className="expenses">
+    <Card className="expenses">
       {expenses.map(expense => {
         return (
           <ExpenseItem
@@ -24,6 +25,6 @@ export default function Expenses({ expenses }: IExpense): JSX.Element {
           />
         );
       })}
-    </div>
+    </Card>
   );
 }
