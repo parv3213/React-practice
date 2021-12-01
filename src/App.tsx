@@ -1,4 +1,4 @@
-import Expenses from './components/Expenses';
+import Expenses from './components/Expenses/Expenses';
 
 function App(): JSX.Element {
   const expenses = [
@@ -25,7 +25,6 @@ function App(): JSX.Element {
 
   return (
     <div>
-      <h2>Lets get started!</h2>
       <Expenses expenses={expenses} />
     </div>
   );
