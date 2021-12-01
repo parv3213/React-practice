@@ -5,7 +5,11 @@ import { useState } from 'react';
 import { IExpense } from '../../App';
 import { INewExpense } from './NewExpense';
 
-export default function ExpenseFrom({ setExpenses }: INewExpense): JSX.Element {
+interface ExpenseForm extends INewExpense {
+  setIsAdding: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function ExpenseFrom({ setExpenses, setIsAdding }: ExpenseForm): JSX.Element {
   const [userInput, setUserInput] = useState({
     title: '',
     amount: '',
@@ -45,6 +49,16 @@ export default function ExpenseFrom({ setExpenses }: INewExpense): JSX.Element {
       amount: '',
       date: '',
     });
+    setIsAdding(false);
+  };
+
+  const cancelHandler = () => {
+    setUserInput({
+      title: '',
+      amount: '',
+      date: '',
+    });
+    setIsAdding(false);
   };
 
   return (
@@ -80,6 +94,7 @@ export default function ExpenseFrom({ setExpenses }: INewExpense): JSX.Element {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={cancelHandler}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
