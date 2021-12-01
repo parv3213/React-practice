@@ -31,7 +31,12 @@ export default function ExpenseFrom({ setExpenses }: INewExpense): JSX.Element {
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const expenseData = { ...userInput, date: new Date(userInput.date), id: String(Math.random()) };
+    const expenseData: IExpense = {
+      ...userInput,
+      amount: parseFloat(userInput.amount),
+      date: new Date(userInput.date),
+      id: String(Math.random()),
+    };
     setExpenses((prevState: IExpense[]) => {
       return [...prevState, expenseData];
     });
