@@ -38,7 +38,7 @@ export default function ExpenseFrom({ setExpenses }: INewExpense): JSX.Element {
       id: String(Math.random()),
     };
     setExpenses((prevState: IExpense[]) => {
-      return [...prevState, expenseData];
+      return [expenseData, ...prevState];
     });
     setUserInput({
       title: '',

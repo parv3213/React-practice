@@ -2,37 +2,26 @@ import './Expenses.css';
 
 import { useState } from 'react';
 
+import { IExpense } from '../../App';
 import Card from '../UI/Card';
-import ExpenseItem from './ExpenseItem';
 import ExpensesFilter from './ExpensesFilter';
+import ExpensesList from './ExpensesList';
 
-interface IExpense {
-  expenses: {
-    id: string;
-    title: string;
-    amount: number;
-    date: Date;
-  }[];
+export interface IExpenses {
+  expenses: IExpense[];
 }
 
-export default function Expenses({ expenses }: IExpense): JSX.Element {
-  const [filterYear, setFilterYear] = useState<string>('2021');
-  // eslint-disable-next-line
-  console.log(filterYear);
+export default function Expenses({ expenses }: IExpenses): JSX.Element {
+  const [filterYear, setFilterYear] = useState('2021');
+
+  const filteredExpenses = expenses.filter(
+    expense => expense.date.getFullYear() === parseInt(filterYear),
+  );
 
   return (
     <Card className="expenses">
       <ExpensesFilter filterYear={filterYear} setFilterYear={setFilterYear} />
-      {expenses.map(expense => {
-        return (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        );
-      })}
+      <ExpensesList filteredExpenses={filteredExpenses} />
     </Card>
   );
 }
