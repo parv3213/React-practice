@@ -37,7 +37,7 @@ export default function ExpenseFrom({ setExpenses, setIsAdding }: ExpenseForm): 
 
     const expenseData: IExpense = {
       ...userInput,
-      amount: parseFloat(userInput.amount),
+      amount: +userInput.amount,
       date: new Date(userInput.date),
       id: String(Math.random()),
     };
