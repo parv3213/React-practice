@@ -1,7 +1,16 @@
-import Expenses from './components/Expenses/Expenses';
+import { useState } from 'react';
 
+import Expenses from './components/Expenses/Expenses';
+import NewExpense from './components/NewExpense/NewExpense';
+
+export interface IExpense {
+  id: string;
+  title: string;
+  amount: number;
+  date: Date;
+}
 function App(): JSX.Element {
-  const expenses = [
+  const [expenses, setExpenses] = useState([
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -21,10 +30,11 @@ function App(): JSX.Element {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
-  ];
+  ] as IExpense[]);
 
   return (
     <div>
+      <NewExpense setExpenses={setExpenses} />
       <Expenses expenses={expenses} />
     </div>
   );
